@@ -1,1 +1,33 @@
-
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D三角比ラボ：ピラミッド設計と立体切断</title><link rel="stylesheet" href="style.css"></head><body>
+<header><h1>3D三角比ラボ</h1><nav><button id="tabA" class="on">ピラミッドを設計する</button><button id="tabB">立体を切断する</button></nav></header>
+<div id="err" hidden></div>
+<main>
+<section id="view"><canvas id="c"></canvas><div id="help"></div>
+<div class="vb"><button id="home">視点を戻す</button><button id="reset">立体をリセット</button></div></section>
+<aside>
+<div id="pA">
+<p class="leg"><b style="color:#e11d48">赤</b>＝垂直な高さ h　<b style="color:#2563eb">青</b>＝水平距離 d/2　<b style="color:#f59e0b">橙</b>＝斜面の長さ s　緑＝断面の直角三角形　θ＝斜面と底面のなす角（辺の中点側）</p>
+<label><input type="radio" name="lock" id="lockH" checked>高さを指定</label> <label><input type="radio" name="lock" id="lockT">傾斜角を指定</label>
+<div class="row">底面の横幅 w <input type="range" id="w" min="1" max="10" step="0.1" value="4"><output id="ow"></output></div>
+<div class="row">底面の奥行き d <input type="range" id="d" min="1" max="10" step="0.1" value="4"><output id="od"></output></div>
+<div class="row">垂直な高さ h <input type="range" id="h" min="0.5" max="30" step="0.1" value="3"><output id="oh"></output></div>
+<div class="row">傾斜角 θ <input type="range" id="t" min="10" max="80" step="0.5" value="45"><output id="ot"></output></div>
+<div id="res"></div>
+<button id="calc">高さを計算する</button><button id="hint">ヒントを見る</button><button id="formula">式を確認する</button><button id="ans">答えを見る</button>
+<ol id="steps"></ol>
+<div class="row">体積を予測しよう <input type="number" id="pred" step="0.1" placeholder="予想(体積)"><button id="predBtn">予想と比べる</button></div><div id="predOut"></div>
+</div>
+<div id="pB" hidden>
+<div class="row">立体 <select id="shape"><option value="cube">立方体</option><option value="cuboid">直方体</option><option value="pyr">正四角錐</option></select></div>
+<div class="row"><button id="tRot" class="on">回転・選択</button><button id="tLine">切断線を引く</button><button id="tPts">3点で切断面を作る</button></div>
+<div id="planInfo">操作を選んでください。</div>
+<div class="row"><button id="cutBtn" disabled>切断する</button><button id="sepBtn">分離表示</button><button id="undoBtn">元に戻す</button></div>
+<label><input type="checkbox" id="capChk" checked>切断面を表示</label>
+<div id="resB"></div>
+</div>
+<div id="ms"><b>ミッション</b><p id="mq"></p><input id="mIn" placeholder="予想を入力"><div class="row"><button id="mPred">予想する</button><button id="mHint">ヒントを見る</button><button id="mAns">結果を確認する</button><button id="mNext">次の課題へ</button></div><p id="mOut"></p></div>
+</aside></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script></body></html>
